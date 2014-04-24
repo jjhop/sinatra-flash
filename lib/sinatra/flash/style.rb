@@ -19,11 +19,11 @@ module Sinatra
       #   'flash_login' if you pass a key of  :login).  
       #
       # @return [String] Styled HTML if the flash contains messages, or an empty string if it's empty.
-      def styled_flash(key=:flash)
+      def styled_flash(key=:flash, attr_char = '\'')
         return "" if flash(key).empty?
         id = (key == :flash ? "flash" : "flash_#{key}")
-        messages = flash(key).collect {|message| "  <div class='flash #{message[0]}'>#{message[1]}</div>\n"}
-        "<div id='#{id}'>\n" + messages.join + "</div>"
+        messages = flash(key).collect {|message| "  <div class=#{attr_char}flash #{message[0]}#{attr_char}>#{message[1]}</div>\n"}
+        "<div id=#{attr_char}#{id}#{attr_char}>\n" + messages.join + "</div>"
       end
       
     end
